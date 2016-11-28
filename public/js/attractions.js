@@ -11,11 +11,23 @@ var attractionsModule = (function () {
 
   // application state
 
-  var enhanced = {
-    hotels: hotels.map(attractionModule.create),
-    restaurants: restaurants.map(attractionModule.create),
-    activities: activities.map(attractionModule.create),
-  }
+let hotels, restaurants, activities;
+const enhanced = {};
+
+$.get('api/hotels')
+  .then(function(foundHotels) {
+    enhanced.hotels = foundHotels.map(attractionModule.create);
+  }).catch(utilsModule.logErr);
+
+$.get('api/restaurants')
+  .then(function(foundRestaurants) {
+    enhanced.restaurants = foundRestaurants.map(attractionModule.create);
+  }).catch(utilsModule.logErr);
+
+$.get('api/activities')
+  .then(function(foundActivities) {
+    enhanced.activities = foundActivities.map(attractionModule.create);
+  }).catch(utilsModule.logErr);
 
   // private helper methods (only available inside the module)
 
