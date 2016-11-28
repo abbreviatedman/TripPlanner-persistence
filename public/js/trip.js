@@ -21,8 +21,13 @@ var tripModule = (function () {
 
   // application state
 
-  var days = [],
-      currentDay;
+  var days = [], currentDay;
+  $.get("/api/days")
+  .then(function(allTheDays) {
+      allTheDays.forEach(function(day) {
+        addDay(day);
+      })
+  }).catch(utilsModule.logErr);
 
   // jQuery selections
 
