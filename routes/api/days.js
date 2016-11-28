@@ -21,19 +21,12 @@ router.get("/", function(req, res, next) {
 	}).catch(next);
 });
 
+// CREATE a new day
 router.post("/", function(req, res, next) {
   Day.create()
   .then(function(oneFineDay) {
     res.json(oneFineDay);
   }).catch(next);
-});
-
-// GET one specific day
-router.get("/:id", function(req, res, next) {
-	Day.findById(req.params.id)
-	.then(function(oneFineDay) {
-		res.json(oneFineDay);
-	}).catch(next);
 });
 
 // DELETE one specific day
@@ -48,11 +41,9 @@ router.delete("/:id", function(req, res, next) {
   }).catch(next);
 });
 
-// CREATE a new day
-router.post("/:id", function(req, res, next) {
-  // const newDay = dayModule.create({number: req.params.id})
-  // res.json(newDay);
-  Day.create()
+// GET one specific day
+router.get("/:id", function(req, res, next) {
+  Day.findById(req.params.id)
   .then(function(oneFineDay) {
     res.json(oneFineDay);
   }).catch(next);
