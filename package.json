@@ -25,6 +25,7 @@
     "volleyball": "1.1.2"
   },
   "devDependencies": {
+    "morgan": "^1.7.0",
     "node-sass": "^3.8.0",
     "nodemon": "^1.4.1"
   }

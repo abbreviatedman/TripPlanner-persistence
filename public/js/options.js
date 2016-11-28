@@ -1,4 +1,7 @@
+/*jshint esversion: 6 */
+/*jshint node: true */
 'use strict';
+
 /* global $ tripModule attractionsModule hotels restaurants activities */
 
 /**
@@ -18,9 +21,20 @@ $(function(){
   var $activitySelect = $optionsPanel.find('#activity-choices');
 
   // make all the option tags (second arg of `forEach` is a `this` binding)
-  hotels.forEach(makeOption, $hotelSelect);
-  restaurants.forEach(makeOption, $restaurantSelect);
-  activities.forEach(makeOption, $activitySelect);
+  $.get('api/hotels')
+  .then(function(hotels) {
+    hotels.forEach(makeOption, $hotelSelect);
+  }).catch(utilsModule.logErr);
+
+    $.get('api/restaurants')
+  .then(function(restaurants) {
+    restaurants.forEach(makeOption, $restaurantSelect);
+  }).catch(utilsModule.logErr);
+
+    $.get('api/activities')
+  .then(function(activities) {
+    activities.forEach(makeOption, $activitySelect);
+  }).catch(utilsModule.logErr);
 
   function makeOption (databaseAttraction) {
     var $option = $('<option></option>') // makes a new option tag
