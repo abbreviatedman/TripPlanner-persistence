@@ -20,11 +20,36 @@ router.get("/days", function(req, res, next) {
 	}).catch(next);
 });
 
+router.get("/days/:id", function(req, res, next) {
+	Day.findOne(
+		{where: {
+			id: id
+		}}
+	)
+	.then(function(oneFineDay) {
+		res.json(oneFineDay);
+	}).catch(next);
+});
+
 router.post("/days", function(req, res, next) {
 });
 
-router.put("/days", function (req, res, next) {
+router.get("days/:id/restaurants", function(req, res, next) {
 });
 
-router.delete("/days", function (req, res, next) {
+router.get("days/:id/:restaurant", function(req, res, next) {
+});
+
+router.delete("days/:id/:restaurant", function(req, res, next) {
+});
+
+router.delete("/days/:id", function(req, res, next) {
+	Day.findOne(
+		{where: {
+			id: id
+		}}
+	)
+	.then(function(oneFineDay) {
+		//delete somehow
+	}).catch(next);
 });
